@@ -1,0 +1,8 @@
+/target
+Cargo.lock
+/tmp/raft-node-*
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.iml

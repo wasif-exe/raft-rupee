@@ -1,0 +1,7 @@
+[workspace]
+members = ["raft-core", "raft-sim", "raft-server", "raft-client"]
+resolver = "2"
+
+[workspace.dependencies]
+rand = { version = "0.8", features = ["small_rng"] }
+serde = { version = "1.0", features = ["derive"] }
