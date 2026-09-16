@@ -7,7 +7,7 @@
 
 ## Terminal Proof Dashboard
 
-![Raft-₹ Dashboard](./assets/proof_dashboard.png)
+![Raft-₹ Dashboard](./proof_dashboard.png)
 
 ---
 
