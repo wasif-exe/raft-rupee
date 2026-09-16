@@ -2,7 +2,12 @@
 
 > A from-scratch Raft consensus engine in Rust with a deterministic simulation testing harness that can reproduce any network partition, disk fault, message reordering, or clock skew from a single u64 seed.
 
-Built by [Syed M Wasif](https://linkedin.com/in/YOUR_HANDLE_HERE) from Bengaluru, India.
+
+---
+
+## Terminal Proof Dashboard
+
+![Raft-₹ Dashboard](./assets/proof_dashboard.png)
 
 ---
 
@@ -35,6 +40,7 @@ Raft-₹ is a complete implementation of the Raft Consensus Algorithm (Ongaro, S
 ## Safety Invariants Verified
 
 Every simulator tick evaluates:
+
 - **Election Safety (§5.2)**: At most one leader per term
 - **Log Matching (§5.3)**: Pairwise log consistency across all nodes
 - **Leader Append-Only (§5.3)**: Immutable committed history
@@ -42,47 +48,50 @@ Every simulator tick evaluates:
 
 ## Workspace Structure
 
-\`\`\`
+```text
 raft-rupee/
-├── raft-core/     # Pure consensus state machine (no I/O)
-├── raft-sim/      # Deterministic chaos simulator + invariants
-├── raft-server/   # Production TCP + O_DIRECT WAL binary
-└── raft-client/   # CLI client with automatic leader redirection
-\`\`\`
+├── raft-core/   # Pure consensus state machine (no I/O)
+├── raft-sim/    # Deterministic chaos simulator + invariants
+├── raft-server/ # Production TCP + O_DIRECT WAL binary
+└── raft-client/ # CLI client with automatic leader redirection
+
+```
 
 ## Quick Start
 
 ### Run the Deterministic Chaos Simulator
 
-\`\`\`bash
+```bash
 cargo test -p raft-sim --release --test simulation_tests -- --nocapture
-\`\`\`
+
+```
 
 ### Run the Criterion Benchmarks
 
-\`\`\`bash
+```bash
 cargo bench -p raft-sim --bench sim_benchmark
-\`\`\`
+
+```
 
 ### Spin Up a Local 3-Node Physical Cluster
 
-\`\`\`bash
+```bash
 ./run_local_cluster.sh
-\`\`\`
+
+```
 
 ### Verify Full Proof Suite (Simulator + Benchmark + Live Cluster)
 
-\`\`\`bash
+```bash
 ./generate_proof.sh
-\`\`\`
+
+```
 
 ## References
 
-1. Ongaro & Ousterhout — *In Search of an Understandable Consensus Algorithm* (Extended Version) — https://raft.github.io/raft.pdf
-2. Ongaro — *Consensus: Bridging Theory and Practice* (Stanford PhD Dissertation) — https://web.stanford.edu/\~ouster/cgi-bin/papers/OngaroPhD.pdf
-3. Will Wilson — *Testing Distributed Systems w/ Deterministic Simulation* (FoundationDB, Strange Loop 2014) — https://www.youtube.com/watch\?v\=4fFDFbi3toc
-4. TigerBeetle VOPR Design Documentation — https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/DESIGN.md
+* Ongaro & Ousterhout — [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf)
+* Ongaro — [Consensus: Bridging Theory and Practice (Stanford PhD Dissertation)](https://web.stanford.edu/~ouster/cgi-bin/papers/OngaroPhD.pdf)
+* Will Wilson — [Testing Distributed Systems w/ Deterministic Simulation (FoundationDB, Strange Loop 2014)](https://www.youtube.com/watch?v=4fFDFbi3toc)
+* [TigerBeetle VOPR Design Documentation](https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/DESIGN.md)
 
-## License
 
-MIT
